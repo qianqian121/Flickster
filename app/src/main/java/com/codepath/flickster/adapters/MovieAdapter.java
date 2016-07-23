@@ -21,6 +21,16 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Movie> mMovies;
     private final int POPULAR = 1;
+    private View.OnClickListener mOnClickListener;
+    private View.OnClickListener mPopularOnClickListener;
+
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.mOnClickListener = onClickListener;
+    }
+
+    public void setPopularOnClickListener(View.OnClickListener onClickListener) {
+        this.mPopularOnClickListener = onClickListener;
+    }
 
     public MovieAdapter(List<Movie> movies) {
         mMovies = movies;
@@ -34,9 +44,21 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         RecyclerView.ViewHolder movieViewHolder;
         if (viewType == POPULAR) {
             View movieView = inflater.inflate(R.layout.item_popular, parent, false);
+            movieView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mPopularOnClickListener.onClick(view);
+                }
+            });
             movieViewHolder = new PopularMovieViewHolder(movieView);
         }else {
             View movieView = inflater.inflate(R.layout.item_movie, parent, false);
+            movieView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mOnClickListener.onClick(view);
+                }
+            });
             movieViewHolder = new MovieViewHolder(movieView);
         }
         return movieViewHolder;

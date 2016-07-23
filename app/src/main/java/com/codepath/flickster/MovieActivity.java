@@ -1,12 +1,15 @@
 package com.codepath.flickster;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
+import com.codepath.flickster.activities.QuickPlayActivity;
 import com.codepath.flickster.adapters.MovieAdapter;
 import com.codepath.flickster.models.Movie;
 import com.loopj.android.http.AsyncHttpClient;
@@ -41,6 +44,13 @@ public class MovieActivity extends AppCompatActivity {
         rvItems.setLayoutManager(new LinearLayoutManager(this));
         movies = new ArrayList<>();
         movieAdapter = new MovieAdapter(movies);
+        movieAdapter.setPopularOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MovieActivity.this, QuickPlayActivity.class);
+                startActivity(intent);
+            }
+        });
         rvItems.setAdapter(movieAdapter);
 
         // Setup refresh listener which triggers new data loading
