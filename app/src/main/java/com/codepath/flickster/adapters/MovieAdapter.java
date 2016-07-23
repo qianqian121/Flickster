@@ -45,8 +45,8 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         Movie movie = mMovies.get(position);
         if (movie.isPopular()) {
             PopularMovieViewHolder vh = (PopularMovieViewHolder) holder;
-            Picasso.with(vh.ivBackDrop.getContext()).load(movie.getBackDropPath()).into(vh.ivBackDrop);
-            int orientation = vh.ivBackDrop.getContext().getResources().getConfiguration().orientation;
+            Picasso.with(vh.itemView.getContext()).load(movie.getBackDropPath()).into(vh.ivBackDrop);
+            int orientation = vh.itemView.getContext().getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 if (vh.tvTitlePopular != null) {
                     vh.tvTitlePopular.setText(movie.getOriginalTitle());
@@ -61,7 +61,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             vh.tvTitle.setText(movie.getOriginalTitle());
             vh.tvOverview.setText(movie.getOverview());
             String image = "";
-            int orientation = vh.ivMovieImage.getContext().getResources().getConfiguration().orientation;
+            int orientation = vh.itemView.getContext().getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_PORTRAIT) {
                 image = movie.getPosterPath();
                 // ...
@@ -69,7 +69,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 image = movie.getBackDropPath();
                 // ...
             }
-            Picasso.with(vh.ivMovieImage.getContext()).load(image).into(vh.ivMovieImage);
+            Picasso.with(vh.itemView.getContext()).load(image).into(vh.ivMovieImage);
             //Picasso.with(vh.ivMovieImage.getContext()).load(movie.getPosterPath()).into(vh.ivMovieImage);
             //Picasso.with(vh.ivBackDropLand.getContext()).load(movie.getBackDropPath()).into(vh.ivBackDropLand);
         }
