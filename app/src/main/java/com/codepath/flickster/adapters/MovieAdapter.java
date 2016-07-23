@@ -13,6 +13,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+
 /**
  * Created by qiming on 7/21/2016.
  */
@@ -45,7 +47,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         Movie movie = mMovies.get(position);
         if (movie.isPopular()) {
             PopularMovieViewHolder vh = (PopularMovieViewHolder) holder;
-            Picasso.with(vh.itemView.getContext()).load(movie.getBackDropPath()).into(vh.ivBackDrop);
+            Picasso.with(vh.itemView.getContext()).load(movie.getBackDropPath()).transform(new RoundedCornersTransformation(10, 10)).into(vh.ivBackDrop);
             int orientation = vh.itemView.getContext().getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 if (vh.tvTitlePopular != null) {
@@ -69,7 +71,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 image = movie.getBackDropPath();
                 // ...
             }
-            Picasso.with(vh.itemView.getContext()).load(image).into(vh.ivMovieImage);
+            Picasso.with(vh.itemView.getContext()).load(image).transform(new RoundedCornersTransformation(10, 10)).into(vh.ivMovieImage);
             //Picasso.with(vh.ivMovieImage.getContext()).load(movie.getPosterPath()).into(vh.ivMovieImage);
             //Picasso.with(vh.ivBackDropLand.getContext()).load(movie.getBackDropPath()).into(vh.ivBackDropLand);
         }
