@@ -48,8 +48,12 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             Picasso.with(vh.ivBackDrop.getContext()).load(movie.getBackDropPath()).into(vh.ivBackDrop);
             int orientation = vh.ivBackDrop.getContext().getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                vh.tvTitlePopular.setText(movie.getOriginalTitle());
-                vh.tvOverviewPopular.setText(movie.getOverview());
+                if (vh.tvTitlePopular != null) {
+                    vh.tvTitlePopular.setText(movie.getOriginalTitle());
+                }
+                if (vh.tvOverviewPopular != null) {
+                    vh.tvOverviewPopular.setText(movie.getOverview());
+                }
                 // ...
             }
         } else {
@@ -91,5 +95,16 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             return mMovies.size();
         }
         return 0;
+    }
+
+    public void clear() {
+        mMovies.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items
+    public void addAll(List<Movie> list) {
+        mMovies.addAll(list);
+        notifyDataSetChanged();
     }
 }
