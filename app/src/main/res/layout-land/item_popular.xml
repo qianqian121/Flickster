@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        tools:text="Title"
+        android:id="@+id/tvTitlePopular"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/tvOverviewPopular"
+        android:layout_alignStart="@+id/tvOverviewPopular" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Overview"
+        android:id="@+id/tvOverviewPopular"
+        android:layout_below="@+id/tvTitlePopular"
+        android:layout_toRightOf="@+id/ivBackDrop"
+        android:layout_toEndOf="@+id/ivBackDrop"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivBackDrop"
+        tools:src="@mipmap/ic_launcher" />
+
+</RelativeLayout>
