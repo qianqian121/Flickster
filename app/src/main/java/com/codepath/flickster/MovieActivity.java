@@ -37,34 +37,7 @@ public class MovieActivity extends AppCompatActivity {
     @BindView(R.id.swipeContainer)
     SwipeRefreshLayout swipeContainer;
 
-    String getTrailerSource(String id) {
-        final String[] result = {""};
-        String trailerUrl = String.format("https://api.themoviedb.org/3/movie/%s/trailers?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed", id);
-        client.get(url, new JsonHttpResponseHandler() {
 
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                //super.onSuccess(statusCode, headers, response);
-                JSONArray movieJsonResults = null;
-                try {
-                    movieJsonResults = response.getJSONArray("youtube");
-                    result[0] = movieJsonResults.getJSONObject(0).getString("source");
-                    Log.d("tag", "onSuccess: ");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                super.onFailure(statusCode, headers, responseString, throwable);
-                Log.d("tag", "onSuccess: ");
-            }
-        });
-        while (result[0].length() == 0)
-            ;
-        return result[0];
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,12 +52,7 @@ public class MovieActivity extends AppCompatActivity {
                 Intent intent = new Intent(MovieActivity.this, QuickPlayActivity.class);
                 int position = rvItems.getChildAdapterPosition(view);
                 Movie movie = movies.get(position);
-                String source = movie.getSource();
-                if (source.length() == 0) {
-                    source = getTrailerSource(movie.getId());
-                    movie.setSource(source);
-                }
-                intent.putExtra("source", source);
+                intent.putExtra("id", movie.getId());
                 startActivity(intent);
             }
         });

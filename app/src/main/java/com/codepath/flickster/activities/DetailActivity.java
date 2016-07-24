@@ -35,6 +35,7 @@ public class DetailActivity extends AppCompatActivity {
     RatingBar rbVote;
     @BindView(R.id.tvDetailOverview)
     TextView tvDetailOverview;
+    Movie movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class DetailActivity extends AppCompatActivity {
         // TODO: add setContentView(...) invocation
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
-        Movie movie = (Movie) getIntent().getSerializableExtra("movie");
+        movie = (Movie) getIntent().getSerializableExtra("movie");
         tvDetailTitle.setText(movie.getOriginalTitle());
         tvDetailOverview.setText(movie.getOverview());
         tvReleaseDate.setText("Release Date: " + movie.getRealeaseDate());
@@ -52,6 +53,7 @@ public class DetailActivity extends AppCompatActivity {
 
     public void onPlayMovie(View v) {
         Intent it = new Intent(DetailActivity.this, QuickPlayActivity.class);
+        it.putExtra("id", movie.getId());
         startActivity(it);
     }
 //    R.layout.activity_details
