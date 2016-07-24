@@ -1,8 +1,8 @@
 package com.codepath.flickster.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -20,7 +20,7 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 /**
  * Created by qiming on 7/23/2016.
  */
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends Activity {
     @BindView(R.id.ivDetailBackDrop)
     ImageView ivDetailBackDrop;
     @BindView(R.id.ivDetailPlayIcon)
