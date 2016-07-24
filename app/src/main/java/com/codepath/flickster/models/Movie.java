@@ -4,12 +4,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by qiming on 7/20/2016.
  */
-public class Movie {
+public class Movie implements Serializable {
     private final static int POPULAR_VOTE = 5;
 
     public String getPosterPath() {

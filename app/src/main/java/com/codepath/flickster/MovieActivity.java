@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.codepath.flickster.activities.DetailActivity;
 import com.codepath.flickster.activities.QuickPlayActivity;
 import com.codepath.flickster.adapters.MovieAdapter;
 import com.codepath.flickster.models.Movie;
@@ -48,6 +49,16 @@ public class MovieActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MovieActivity.this, QuickPlayActivity.class);
+                startActivity(intent);
+            }
+        });
+        movieAdapter.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MovieActivity.this, DetailActivity.class);
+                int position = rvItems.getChildAdapterPosition(view);
+                intent.putExtra("movie", movies.get(position));
                 startActivity(intent);
             }
         });
