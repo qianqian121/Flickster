@@ -19,7 +19,9 @@
             android:layout_alignParentTop="true"
             android:alpha="0.75"
             android:id="@+id/ivDetailPlayIcon"
-            android:src="@android:drawable/ic_media_play" />
+            android:src="@android:drawable/ic_media_play"
+            android:clickable="true"
+            android:onClick="onPlayMovie" />
     </FrameLayout>
 
     <TextView

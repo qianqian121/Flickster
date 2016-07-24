@@ -33,20 +33,47 @@ public class Movie implements Serializable {
     String backDropPath;
     String originalTitle;
     String overview;
-    int voteAverage;
+    String id;
+    String source;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public String getRealeaseDate() {
+        return realeaseDate;
+    }
+
+    String realeaseDate;
+
+    public float getVoteAverage() {
+        return voteAverage;
+    }
+
+    float voteAverage;
 
     public boolean isPopular() {
         //return false;
-        return voteAverage >= POPULAR_VOTE;
+        return (int)voteAverage >= POPULAR_VOTE;
     }
 
     public Movie(JSONObject jsonObject) throws JSONException {
+        this.id = jsonObject.getString("id");
         this.posterPath = jsonObject.getString("poster_path");
         this.backDropPath = jsonObject.getString("backdrop_path");
         this.originalTitle = jsonObject.getString("original_title");
         this.overview = jsonObject.getString("overview");
-        float vote = Float.valueOf(jsonObject.getString("vote_average"));
-        this.voteAverage = (int)vote;
+        this.realeaseDate = jsonObject.getString("release_date");
+        this.voteAverage = Float.valueOf(jsonObject.getString("vote_average"));
+        this.source = "";
     }
 
     public static ArrayList<Movie> fromJSONArray(JSONArray array) {
