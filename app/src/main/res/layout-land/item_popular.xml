@@ -20,15 +20,30 @@
         tools:text="Overview"
         android:id="@+id/tvOverviewPopular"
         android:layout_below="@+id/tvTitlePopular"
-        android:layout_toRightOf="@+id/ivBackDrop"
-        android:layout_toEndOf="@+id/ivBackDrop"
+        android:layout_toRightOf="@+id/flPopularImage"
+        android:layout_toEndOf="@+id/flPopularImage"
         android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp" />
 
-    <ImageView
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ivBackDrop"
-        tools:src="@mipmap/ic_launcher" />
+        android:id="@+id/flPopularImage">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivBackDrop"
+            tools:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_alignParentTop="true"
+            android:alpha="0.75"
+            android:id="@+id/ivPlayIconLand"
+            android:src="@android:drawable/ic_media_play" />
+    </FrameLayout>
 
 </RelativeLayout>

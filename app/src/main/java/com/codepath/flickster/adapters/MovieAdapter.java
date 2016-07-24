@@ -69,7 +69,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         Movie movie = mMovies.get(position);
         if (movie.isPopular()) {
             PopularMovieViewHolder vh = (PopularMovieViewHolder) holder;
-            Picasso.with(vh.itemView.getContext()).load(movie.getBackDropPath()).transform(new RoundedCornersTransformation(10, 10)).placeholder(R.drawable.picasso).into(vh.ivBackDrop);
+            Picasso.with(vh.itemView.getContext()).load(movie.getBackDropPath()).transform(new RoundedCornersTransformation(10, 10)).placeholder(R.drawable.cover).into(vh.ivBackDrop);
             int orientation = vh.itemView.getContext().getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 if (vh.tvTitlePopular != null) {
@@ -86,14 +86,16 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             vh.tvOverview.setText(movie.getOverview());
             String image = "";
             int orientation = vh.itemView.getContext().getResources().getConfiguration().orientation;
+            int placeHolder = R.drawable.picasso;
             if (orientation == Configuration.ORIENTATION_PORTRAIT) {
                 image = movie.getPosterPath();
                 // ...
             } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 image = movie.getBackDropPath();
+                placeHolder = R.drawable.cover;
                 // ...
             }
-            Picasso.with(vh.itemView.getContext()).load(image).transform(new RoundedCornersTransformation(10, 10)).placeholder(R.drawable.picasso).into(vh.ivMovieImage);
+            Picasso.with(vh.itemView.getContext()).load(image).transform(new RoundedCornersTransformation(10, 10)).placeholder(placeHolder).into(vh.ivMovieImage);
             //Picasso.with(vh.ivMovieImage.getContext()).load(movie.getPosterPath()).into(vh.ivMovieImage);
             //Picasso.with(vh.ivBackDropLand.getContext()).load(movie.getBackDropPath()).into(vh.ivBackDropLand);
         }
